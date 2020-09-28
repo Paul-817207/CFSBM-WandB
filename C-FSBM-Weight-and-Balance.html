@@ -18,9 +18,9 @@
 </style>
 
 </head>
-	
-<!-- 
-TODO list 
+
+<!--
+TODO list
 -allow pilot to enter estimated fuel burn in gph
 
 -remove spinners from the number inputs
@@ -33,12 +33,12 @@ TODO list
 
 -REVIEW all information (text and calculations) to make sure it is accurate
 
--maybe put input fields in a table >> tables is the old way, Learn and implement CSS layout 
+-maybe put input fields in a table >> tables is the old way, Learn and implement CSS layout
 -put output fields in a table
 
 -add display standard weights for fuel and oil for both metric and the other thing in information section
--add conversion for kg  < -- > lbs
--add conversion for usg < -- > litres
+-add conversion for kg  < - > lbs
+-add conversion for usg < - > litres
 -add input weights to the image and add output values to the image
 -maybe add continuous calculations by repeatedly calling the function makeCalculation()
 
@@ -49,7 +49,7 @@ TODO list
    <!--load airplane images here into the html document, but do not display them. used by
    the javaScript to display on the canvas of the chart
    -->
-   
+
 
    <h2>Weight and balance calculator for Piper Cub C-FSBM</h2>
 
@@ -59,10 +59,10 @@ TODO list
    <p>
       Please read below how these calulations are performed and the information that the calculations are based on. Remember, as always, it is the responsibility of the PIC to veriify the information is correct and make the final decision for the flight.
    </p>
-   
+
    <NOSCRIPT>
       <font color="red">
-      <H3>This page uses JavaScript</H3> 
+      <H3>This page uses JavaScript</H3>
       <ul>
          <li>Please use a JavaScript-enabled browser.
          <li>Make sure that JavaScript is enabled.
@@ -70,58 +70,58 @@ TODO list
 	  </font>
    </NOSCRIPT>
 
-   
+
    <h3 center> Enter the information for the planned flight </h3>
-   
+
    <form id="Weight_input_form">
-      
-	  <div class="Weight entry form">  
-		
-		<p>		 
-		 Gear: WHEELS is default or click for SKIS:  
+
+	  <div class="Weight entry form">
+
+		<p>
+		 Gear: WHEELS is default or click for SKIS:
 		 <input onChange="makeCalculation();" type="checkbox"  id="skis" value="Skis"> </input> <label for "skis">Skis</label><br>
 		</p>
-		
+
 		<p>
-         <label id="label_pilot_lbs" >Pilot (REAR seat)lbs:</label> 
+         <label id="label_pilot_lbs" >Pilot (REAR seat)lbs:</label>
          <input onkeyup = "makeCalculation()" type="number" id="pilot_weight" value=0></input>
 		 <font color="red"><span id="pilot_lbs_error"></span></font>
 		 </p>
-		 
+
 		 <p>
-		 <label>Passenger (FRONT seat)lbs:</label>  
-         <input onkeyup = "makeCalculation()" type="number" id="pass_weight" value=0></input> 
+		 <label>Passenger (FRONT seat)lbs:</label>
+         <input onkeyup = "makeCalculation()" type="number" id="pass_weight" value=0></input>
 		 <font color="red"><span id="pass_lbs_error"></span></font>
 		 </p>
-		 
+
 		 <p>
-		 <label>Baggage area (20lbs max)lbs:</label>  
+		 <label>Baggage area (20lbs max)lbs:</label>
          <input onkeyup = "makeCalculation()" type="number" id="baggage_weight"  value=0 ></input>
-         <font color="red"><span id="baggage_lbs_error"></span></font>		 
+         <font color="red"><span id="baggage_lbs_error"></span></font>
 		 </p>
-		 
+
 		 <p>
-		 <label>Fuel Main tank(10 USG max), USG:</label>  
+		 <label>Fuel Main tank(10 USG max), USG:</label>
          <input onkeyup = "convert_litres('main_usg');" type="number" id="main_fuel_usg" min="0" max="10" step="1" value=0 ></input>
 		 <label>Litres:</label>
 		 <input onkeyup = "convert_litres('main_litres');" type="number" id="main_fuel_litres" value=0></input>
 		 <font color="red"><span id="main_fuel_error"></span></font>
 		 </p>
-		 
+
 		 <p>
-		 <label>Fuel Wing tank(8 USG max), USG:</label>  
+		 <label>Fuel Wing tank(8 USG max), USG:</label>
          <input onkeyup = "convert_litres('wing_usg');" type="number" id="wing_fuel_usg" min="0" max="8" step="1"value=0 ></input>
 		 <label>Litres:</label>
 		 <input onkeyup = "convert_litres('wing_litres');" type="number" id="wing_fuel_litres" value=0></input>
-         <font color="red"><span id="wing_fuel_error"></span></font>		 
+         <font color="red"><span id="wing_fuel_error"></span></font>
 		 </p>
-		 
+
 		 <p>
-		 <label>Oil quantity measured in the engine(quarts):</label>  
-         <input onkeyup = "makeCalculation()" type="number" id="oil_quarts" value=4 ></input> 
+		 <label>Oil quantity measured in the engine(quarts):</label>
+         <input onkeyup = "makeCalculation()" type="number" id="oil_quarts" value=4 ></input>
 		 <font color="red"><span id="oil_error"></span></font>
          </p>
-		 
+
 		 <p>
 		 <label>Estimated fuel use for flight, USG: </label>
 		 <input onkeyup = "convert_litres('est_fuel_usg');" type="number" id="flight_fuel_used_usg" value=0></input>
@@ -129,26 +129,26 @@ TODO list
 		 <input onkeyup = "convert_litres('est_fuel_litres');" type="number" id="estimated_fuel_litres" value=0></input>
 		 <font color="red"><span id="fuel_for_flight_error"></span></font>
 		 </p>
-      </div> 
+      </div>
 
    </form>
    <p>
    <button onclick="makeCalculation();">CALCULATE</button>
    NOTE: see the text results below the chart for detailed results.
    </p>
-   
+
    <!-- 800 x 600 canvas size
-   <canvas width = "800" height = "600" id = "output_chart" >An ERROR has occured and a Weight and Balance chart will not be drawn here, probably because you are using an unsupported web browser or javaScript might be disabled. Sorry.</canvas>     
+   <canvas width = "800" height = "600" id = "output_chart" >An ERROR has occured and a Weight and Balance chart will not be drawn here, probably because you are using an unsupported web browser or javaScript might be disabled. Sorry.</canvas>
    -->
-   <!-- 640 x 480 canvas size 
+   <!-- 640 x 480 canvas size
    <canvas width = "640" height = "480" id = "output_chart" onClick = "zoom();" >An ERROR has occured and a Weight and Balance chart will not be drawn here, probably because you are using an unsupported web browser or javaScript might be disabled. Sorry.</canvas>
    -->
    <!-- 320 x 240 canvas size -->
    <canvas width = "320" height = "240" id = "output_chart" onClick = "zoom();" >An ERROR has occured and a Weight and Balance chart will not be drawn here, probably because you are using an unsupported web browser or javaScript might be disabled. Sorry.</canvas>
-      
-   
+
+
    <p id="output"><!--This paragraph is where the output of the javaScript function goes --></p>
-   
+
    <br>
    <p>
       The weight and balance calculations are based on the information provided on the "Weight and Balance" document descibed below and is not valid otherwise.<br>
@@ -166,7 +166,7 @@ TODO list
 	  Right main Gear: 361 lbs<br>
 	  Tail Wheel: 42 lbs<br>
 	  Using the formula : Centre of Gravity = D + ((R x L)/W)
-	  Where: 
+	  Where:
 	  D= distance in inches of the main gear from the datum<br>
 	  R= the weight in lbs of the tail wheel<br>
 	  L= distance in inches of the tail wheel from the main gear<br>
@@ -179,8 +179,8 @@ TODO list
 	  Given this Centre of Gravity on wheels, the new moment on wheels is: 10587.5<br>
 	  Based on this, the weight and Centre of Gravity on skis, is:<br>
 	  Aircraft on skis { weight : 782 lbs }{ arm : 13.59 }{ moment 10623.5 }<br><br>
-	    
-	  
+
+
    </p>
    <p>
       <h4>C-FSBM Weight and balance data from the sheet dated Oct 2019 (CONTAINS ERRORS)</h4>
@@ -195,18 +195,18 @@ TODO list
 	  Useful Load = 450 lbs<br>
 	  Gross Weight =  1220 lbs<br>
 	  Centre of Gravity range is +10.6" to +22.7"<br><br>
-	  
+
 	  <h5>Weights on skis:</h5>
 	  Basic empty weight on wheels : 770 lbs<br>
 	  Remove wheels : -20 lbs<br>
 	  Add Aero ski : +32 lbs<br>
 	  New Basic empty weight on skis = 782 lbs<br>
 	  New Centre of Gravity on skis = 10.7 " aft of datum<br>
-	  
+
    </p>
    <br><br><br><br><br><br><br><br>
    <img src = "./page_resources/pictures/J3_on_skis.jpg" id="img_j3_skis" ></img>
-   
+
    <img src = "./page_resources/pictures/J3_on_wheels.jpg" id = "img_j3_wheels"></img>
 
 </body>
