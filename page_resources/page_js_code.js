@@ -1,3 +1,4 @@
+//code for C-FSBM
 //function to convert litres to usg and put litres value in usg field
 function convert_litres(tank){
 	
@@ -285,9 +286,9 @@ function makeCalculation() {
   
   //check if the gross weight or the CofG is out of the safe envelope and set a flag to highlight that fact in RED
   if ( take_off_weight > MAX_GROSS_WEIGHT ){
-	  is_over_TO_Gross_weight = true;
+	  is_over_Gross_TO_weight = true;
   }else{
-	  is_over_TO_Gross_weight = false;
+	  is_over_Gross_TO_weight = false;
   }
   
   if ( landing_weight > MAX_GROSS_WEIGHT ) {
@@ -324,7 +325,7 @@ function makeCalculation() {
 	+ "Take off configuration:<br>"   
 	+ "&nbsp&nbsp&nbspMain fuel tank contains&nbsp" + main_fuel_volume_usg + "&nbspusg that weighs&nbsp" + main_fuel_lbs.toFixed(2) + "&nbsplbs<br>"
 	+ "&nbsp&nbsp&nbspWing fuel tank contains&nbsp" + wing_fuel_volume_usg + "&nbspusg that weighs&nbsp" + wing_fuel_lbs.toFixed(2) + "&nbsplbs<br>"
-	+ "&nbsp&nbsp&nbspTake off weight (max =1220lbs) =&nbsp " + (take_off_weight).toFixed(0) + "&nbsplbs&nbsp" + (is_over_TO_Gross_weight ? '<font color="red"><span>is over max gross weight. WARNING</span></font><br>':'<font color="green"><span>&nbspis OK</span></font><br>')
+	+ "&nbsp&nbsp&nbspTake off weight (max =1220lbs) =&nbsp " + (take_off_weight).toFixed(0) + "&nbsplbs&nbsp" + (is_over_Gross_TO_weight ? '<font color="red"><span>is over max gross weight. WARNING</span></font><br>':'<font color="green"><span>&nbspis OK</span></font><br>')
 	+ "&nbsp&nbsp&nbspTake off Centre of Gravity (min 10.6 max 22.7) =&nbsp" + CG_takeoff.toFixed(2) + (is_outside_TO_CG_envelope ? '<font color="red"><span>&nbspOutside of CG envelope. WARNING</span></font><br><br>' : '<font color="green"><span>&nbspis OK</span></font><br>')
 	+ "&nbsp&nbsp&nbspRemaining Load to gross weight is " + (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) + "&nbsplbs<br><br>"
 	
@@ -343,6 +344,6 @@ function makeCalculation() {
   }
   
   //send the data to the chart function to display in chart form
-  chart_it(take_off_weight, CG_takeoff, landing_weight, CG_landing,(is_outside_TO_CG_envelope || is_outside_LDG_CG_envelope || is_over_Gross_LDG_weight || is_over_TO_Gross_weight), is_below_minimum_fuel_reserve, (gear_type === "WHEELS") );
+  chart_it(take_off_weight, CG_takeoff, landing_weight, CG_landing,(is_outside_TO_CG_envelope || is_outside_LDG_CG_envelope || is_over_Gross_LDG_weight || is_over_Gross_TO_weight), is_below_minimum_fuel_reserve, (gear_type === "WHEELS") );
   
 }
