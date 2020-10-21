@@ -15,12 +15,47 @@
    img {
      display: none;
      }
+   .WeightEntryForm{
+     display: grid;
+     grid-template-columns: 1fr;
+     grid-gap: .5em;
+   }
+   .gearCheckBox{
+     background-color: #FFFFFF;
+     grid-column: 1;
+     grid-row: 1;
+   }
+   .pilotInput{
+     background-color: FFFFFF;
+     grid-column: 1;
+     grid-row: 2;
+   }
+   .passInput{
+     background-color: FFFFFF;
+   }
+   .baggageInput{
+     background-color: FFFFFF;
+   }
+   .mainFuelInput{
+     background-color: FFFFFF;
+   }
+   .wingFuelInput{
+     background-color: FFFFFF;
+   }
+   .oilInput{
+     background-color: FFFFFF;
+   }
+   .fuelUsedInput{
+     background-color: FFFFFF;
+   }
 </style>
 
 </head>
 
 <!--
 TODO list
+
+-BOTH when calculate button is pressed, send to function to makeCalculation() AND convert_litres()
 -allow pilot to enter estimated fuel burn in gph
 
 -remove spinners from the number inputs
@@ -54,9 +89,6 @@ TODO list
    <h2>Weight and balance calculator for Piper Cub C-FSBM</h2>
 
    <p>
-      This calculator uses javaScript to make the calculations, so it will not work on web browsers with javaScript turned off.
-   </p>
-   <p>
       Please read below how these calulations are performed and the information that the calculations are based on. Remember, as always, it is the responsibility of the PIC to veriify the information is correct and make the final decision for the flight.
    </p>
 
@@ -75,66 +107,84 @@ TODO list
 
    <form id="Weight_input_form">
 
-	  <div class="Weight entry form">
+	  <div class="WeightEntryForm">
 
-		<p>
-		 Gear: WHEELS is default or click for SKIS:
-		 <input onChange="makeCalculation();" type="checkbox"  id="skis" value="Skis"> </input> <label for "skis">Skis</label><br>
-		</p>
+  		<div class="gearCheckBox">
+  		  <label for="skis">Gear: WHEELS is default or click for SKIS:</label>
+  		  <input onChange="makeCalculation();" type="checkbox"  id="skis" value="Skis"> </input><br>
+      </div>
 
-		<p>
-         <label id="label_pilot_lbs" >Pilot (REAR seat)lbs:</label>
+  		<div class="pilotInput">
+         <label for="pilot_weight" id="label_pilot_lbs" >Pilot (REAR seat)lbs:</label>
          <input onkeyup = "makeCalculation()" type="number" id="pilot_weight" value=0></input>
-		 <font color="red"><span id="pilot_lbs_error"></span></font>
-		 </p>
+  		   <font color="red"><span id="pilot_lbs_error"></span></font>
+  		 </div>
 
-		 <p>
-		 <label>Passenger (FRONT seat)lbs:</label>
+  		 <div class="passInput">
+  		   <label for="pass_weight">Passenger (FRONT seat)lbs:</label>
          <input onkeyup = "makeCalculation()" type="number" id="pass_weight" value=0></input>
-		 <font color="red"><span id="pass_lbs_error"></span></font>
-		 </p>
+  		   <font color="red"><span id="pass_lbs_error"></span></font>
+  		 </div>
 
-		 <p>
-		 <label>Baggage area (20lbs max)lbs:</label>
+  		 <div class="baggageInput">
+  		   <label for="baggage_weight">Baggage area (20lbs max)lbs:</label>
          <input onkeyup = "makeCalculation()" type="number" id="baggage_weight"  value=0 ></input>
          <font color="red"><span id="baggage_lbs_error"></span></font>
-		 </p>
+  		 </div>
 
-		 <p>
-		 <label>Fuel Main tank(10 USG max), USG:</label>
-         <input onkeyup = "convert_litres('main_usg');" type="number" id="main_fuel_usg" min="0" max="10" step="1" value=0 ></input>
-		 <label>Litres:</label>
-		 <input onkeyup = "convert_litres('main_litres');" type="number" id="main_fuel_litres" value=0></input>
-		 <font color="red"><span id="main_fuel_error"></span></font>
-		 </p>
+  		 <div class="mainFuelInput">
+         <div>
+  		     <label for="main_fuel_usg">Fuel Main tank(10 USG max), USG:</label>
+           <input onkeyup = "convert_litres('main_usg');" type="number" id="main_fuel_usg" min="0" max="10" step="1" value=0 ></input>
+         </div>
+         <div>
+  		     <label for="main_fuel_litres">Litres:</label>
+  		     <input onkeyup = "convert_litres('main_litres');" type="number" id="main_fuel_litres" value=0 ></input>
+         </div>
+         <div>
+  		     <font color="red"><span id="main_fuel_error"></span></font>
+         </div>
+  		 </div>
 
-		 <p>
-		 <label>Fuel Wing tank(8 USG max), USG:</label>
-         <input onkeyup = "convert_litres('wing_usg');" type="number" id="wing_fuel_usg" min="0" max="8" step="1"value=0 ></input>
-		 <label>Litres:</label>
-		 <input onkeyup = "convert_litres('wing_litres');" type="number" id="wing_fuel_litres" value=0></input>
-         <font color="red"><span id="wing_fuel_error"></span></font>
-		 </p>
+  		 <div class="wingFuelInput">
+         <div>
+  		       <label for="wing_fuel_usg">Fuel Wing tank(8 USG max), USG:</label>
+             <input onkeyup = "convert_litres('wing_usg');" type="number" id="wing_fuel_usg" min="0" max="8" step="1"value=0 ></input>
+         </div>
+         <div>
+  		     <label for="wing_fuel_litres">Litres:</label>
+  		     <input onkeyup = "convert_litres('wing_litres');" type="number" id="wing_fuel_litres" value=0></input>
+         </div>
+         <div>
+           <font color="red"><span id="wing_fuel_error"></span></font>
+         </div>
+  		 </div>
 
-		 <p>
-		 <label>Oil quantity measured in the engine(quarts):</label>
+  		 <div class="oilInput">
+  		   <label for="oil_quarts">Oil quantity measured in the engine(quarts):</label>
          <input onkeyup = "makeCalculation()" type="number" id="oil_quarts" value=4 ></input>
-		 <font color="red"><span id="oil_error"></span></font>
-         </p>
+  		   <font color="red"><span id="oil_error"></span></font>
+       </div>
 
-		 <p>
-		 <label>Estimated fuel use for flight, USG: </label>
-		 <input onkeyup = "convert_litres('est_fuel_usg');" type="number" id="flight_fuel_used_usg" value=0></input>
-		 <label>Litres:</label>
-		 <input onkeyup = "convert_litres('est_fuel_litres');" type="number" id="estimated_fuel_litres" value=0></input>
-		 <font color="red"><span id="fuel_for_flight_error"></span></font>
-		 </p>
-      </div>
+  		 <div class="fuelUsedInput">
+         <div>
+      		 <label for="flight_fuel_used_usg">Estimated fuel use for flight, USG: </label>
+      		 <input onkeyup = "convert_litres('est_fuel_usg');" type="number" id="flight_fuel_used_usg" value=0></input>
+         </div>
+         <div>
+           <label for="estimated_fuel_litres">Litres:</label>
+      		 <input onkeyup = "convert_litres('est_fuel_litres');" type="number" id="estimated_fuel_litres" value=0></input>
+         </div>
+         <div>
+           <font color="red"><span id="fuel_for_flight_error"></span></font>
+         </div>
+    	 </div>
+     </div>
 
    </form>
    <p>
-   <button onclick="makeCalculation();">CALCULATE</button>
-   NOTE: see the text results below the chart for detailed results.
+     <button onclick="makeCalculation();">CALCULATE</button>
+     NOTE: see the text results below the chart for detailed results.
    </p>
 
    <!-- 800 x 600 canvas size
