@@ -21,32 +21,32 @@
      grid-gap: .5em;
    }
    .gearCheckBox{
-     background-color: #FFFFFF;
+     //background-color: #FFFFFF;
      grid-column: 1;
      grid-row: 1;
    }
    .pilotInput{
-     background-color: FFFFFF;
+     //background-color: FFFFFF;
      grid-column: 1;
      grid-row: 2;
    }
    .passInput{
-     background-color: FFFFFF;
+     //background-color: FFFFFF;
    }
    .baggageInput{
-     background-color: FFFFFF;
+     //background-color: FFFFFF;
    }
    .mainFuelInput{
-     background-color: FFFFFF;
+     //background-color: FFFFFF;
    }
    .wingFuelInput{
-     background-color: FFFFFF;
+     //background-color: FFFFFF;
    }
    .oilInput{
-     background-color: FFFFFF;
+     //background-color: FFFFFF;
    }
    .fuelUsedInput{
-     background-color: FFFFFF;
+     //background-color: FFFFFF;
    }
 </style>
 
@@ -112,72 +112,72 @@ TODO list
   		<div class="gearCheckBox">
   		  <label for="skis">Gear: WHEELS is default or click for SKIS:</label>
   		  <input onChange="makeCalculation();" type="checkbox"  id="skis" value="Skis"> </input><br>
-      </div>
+        </div>
 
   		<div class="pilotInput">
-         <label for="pilot_weight" id="label_pilot_lbs" >Pilot (REAR seat)lbs:</label>
-         <input onkeyup = "makeCalculation()" type="number" id="pilot_weight" value=0></input>
+           <label for="pilot_weight" id="label_pilot_lbs" >Pilot (REAR seat)lbs:</label>
+           <input onkeyup = "makeCalculation()" type="number" id="pilot_weight" value=0></input>
   		   <font color="red"><span id="pilot_lbs_error"></span></font>
   		 </div>
 
   		 <div class="passInput">
   		   <label for="pass_weight">Passenger (FRONT seat)lbs:</label>
-         <input onkeyup = "makeCalculation()" type="number" id="pass_weight" value=0></input>
+           <input onkeyup = "makeCalculation()" type="number" id="pass_weight" value=0></input>
   		   <font color="red"><span id="pass_lbs_error"></span></font>
   		 </div>
 
   		 <div class="baggageInput">
   		   <label for="baggage_weight">Baggage area (20lbs max)lbs:</label>
-         <input onkeyup = "makeCalculation()" type="number" id="baggage_weight"  value=0 ></input>
-         <font color="red"><span id="baggage_lbs_error"></span></font>
+           <input onkeyup = "makeCalculation()" type="number" id="baggage_weight"  value=0 ></input>
+           <font color="red"><span id="baggage_lbs_error"></span></font>
   		 </div>
 
   		 <div class="mainFuelInput">
-         <div>
+           <div>
   		     <label for="main_fuel_usg">Fuel Main tank(10 USG max), USG:</label>
-           <input onkeyup = "convert_litres('main_usg');" type="number" id="main_fuel_usg" min="0" max="10" step="1" value=0 ></input>
-         </div>
-         <div>
+             <input onkeyup = "convert_litres('main_usg');" type="number" id="main_fuel_usg" min="0" max="10" step="1" value=0 ></input>
+           </div>
+		
+           <div>
   		     <label for="main_fuel_litres">Litres:</label>
   		     <input onkeyup = "convert_litres('main_litres');" type="number" id="main_fuel_litres" value=0 ></input>
-         </div>
-         <div>
+           </div>
+           <div>
   		     <font color="red"><span id="main_fuel_error"></span></font>
+           </div>
          </div>
-  		 </div>
-
   		 <div class="wingFuelInput">
-         <div>
-  		       <label for="wing_fuel_usg">Fuel Wing tank(8 USG max), USG:</label>
+           <div>
+  		     <label for="wing_fuel_usg">Fuel Wing tank(8 USG max), USG:</label>
              <input onkeyup = "convert_litres('wing_usg');" type="number" id="wing_fuel_usg" min="0" max="8" step="1"value=0 ></input>
-         </div>
-         <div>
+           </div>
+           <div>
   		     <label for="wing_fuel_litres">Litres:</label>
   		     <input onkeyup = "convert_litres('wing_litres');" type="number" id="wing_fuel_litres" value=0></input>
-         </div>
-         <div>
+           </div>
+           <div>
            <font color="red"><span id="wing_fuel_error"></span></font>
+           </div>
          </div>
-  		 </div>
 
   		 <div class="oilInput">
   		   <label for="oil_quarts">Oil quantity measured in the engine(quarts):</label>
-         <input onkeyup = "makeCalculation()" type="number" id="oil_quarts" value=4 ></input>
+           <input onkeyup = "makeCalculation()" type="number" id="oil_quarts" value=4 ></input>
   		   <font color="red"><span id="oil_error"></span></font>
-       </div>
+         </div>
 
   		 <div class="fuelUsedInput">
-         <div>
+           <div>
       		 <label for="flight_fuel_used_usg">Estimated fuel use for flight, USG: </label>
       		 <input onkeyup = "convert_litres('est_fuel_usg');" type="number" id="flight_fuel_used_usg" value=0></input>
-         </div>
-         <div>
-           <label for="estimated_fuel_litres">Litres:</label>
-      		 <input onkeyup = "convert_litres('est_fuel_litres');" type="number" id="estimated_fuel_litres" value=0></input>
-         </div>
-         <div>
+           </div>
+           <div>
+             <label for="estimated_fuel_litres">Litres:</label>
+      	     <input onkeyup = "convert_litres('est_fuel_litres');" type="number" id="estimated_fuel_litres" value=0></input>
+           </div>
+           <div>
            <font color="red"><span id="fuel_for_flight_error"></span></font>
-         </div>
+           </div>
     	 </div>
      </div>
 
