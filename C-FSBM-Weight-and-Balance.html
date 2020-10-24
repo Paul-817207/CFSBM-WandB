@@ -4,51 +4,8 @@
 
 <script src = "./page_resources/page_js_code.js" type = "text/javaScript" ></script>
 <script src = "./page_resources/my_SBM_chart_create.js" type = "text/javaScript"></script>
+<link rel="stylesheet" type="text/css" href="./page_resources/page_style_sheet.css"></link>
 
-<style type = "text/css">
-   body{
-	  background-color : FFE875;
-   }
-   canvas {
-      border: 1px solid black;
-   }
-   img {
-     display: none;
-     }
-   .WeightEntryForm{
-     display: grid;
-     grid-template-columns: 1fr;
-     grid-gap: .5em;
-   }
-   .gearCheckBox{
-     //background-color: #FFFFFF;
-     grid-column: 1;
-     grid-row: 1;
-   }
-   .pilotInput{
-     //background-color: FFFFFF;
-     grid-column: 1;
-     grid-row: 2;
-   }
-   .passInput{
-     //background-color: FFFFFF;
-   }
-   .baggageInput{
-     //background-color: FFFFFF;
-   }
-   .mainFuelInput{
-     //background-color: FFFFFF;
-   }
-   .wingFuelInput{
-     //background-color: FFFFFF;
-   }
-   .oilInput{
-     //background-color: FFFFFF;
-   }
-   .fuelUsedInput{
-     //background-color: FFFFFF;
-   }
-</style>
 
 </head>
 
@@ -161,7 +118,7 @@ TODO list
          </div>
 
   		 <div class="oilInput">
-  		   <label for="oil_quarts">Oil quantity measured in the engine(quarts):</label>
+  		   <label for="oil_quarts">Oil quantity measured in the engine(qts):</label>
            <input onkeyup = "makeCalculation()" type="number" id="oil_quarts" value=4 ></input>
   		   <font color="red"><span id="oil_error"></span></font>
          </div>

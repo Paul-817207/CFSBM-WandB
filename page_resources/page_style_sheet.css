@@ -1,0 +1,49 @@
+    body{
+	  background-color : FFE875;
+	}
+	canvas {
+      border: 1px solid black;
+	}
+	img {
+      display: none;
+    }
+   .WeightEntryForm{
+     display: grid;
+     //grid-template-columns: 1fr 1fr;
+	 grid-template-columns: minmax(auto,20rem) minmax(auto,20rem);
+     grid-gap: .5rem;
+   }
+   .gearCheckBox{
+     background-color: #FFFFFF;
+     grid-column: 1;
+     grid-row: 1;
+   }
+   .pilotInput{
+     background-color: FFFFFF;
+     grid-column: 1;
+     grid-row: 2;
+   }
+   .passInput{
+     background-color: FFFFFF;
+   }
+   .baggageInput{
+     background-color: FFFFFF;
+   }
+   .mainFuelInput{
+     background-color: FFFFFF;
+   }
+   .wingFuelInput{
+     background-color: FFFFFF;
+   }
+   .oilInput{
+     background-color: FFFFFF;
+   }
+   .fuelUsedInput{
+     background-color: FFFFFF;
+   }
+   
+   //resize the grid from two columns to one column on a narrow screen 
+   @media only screen and (max-width:800px){
+	  
+   
+   }
