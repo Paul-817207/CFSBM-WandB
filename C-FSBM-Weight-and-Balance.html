@@ -125,8 +125,8 @@ TODO list
 
   		 <div class="fuelUsedInput">
            <div>
-      		 <label for="flight_fuel_used_usg">Estimated fuel use for flight, USG: </label>
-      		 <input onkeyup = "convert_litres('est_fuel_usg');" type="number" id="flight_fuel_used_usg" value=0></input>
+      		 <label for="flight_fuel_used_usg">Estimated fuel for flight, USG: </label>
+      		 <input onkeyup = "convert_litres('est_fuel_usg');" type="number" id="flight_fuel_used_usg" min="0" max="18" step="1" value=0></input>
            </div>
            <div>
              <label for="estimated_fuel_litres">Litres:</label>
