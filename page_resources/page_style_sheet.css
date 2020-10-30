@@ -9,7 +9,7 @@
     }
    .WeightEntryForm{
      display: grid;
-	 grid-template-columns: minmax(auto,20rem) minmax(auto,20rem);
+	   grid-template-columns: minmax(auto,15rem) minmax(auto,15rem);
      grid-gap: .5rem;
    }
    .gearCheckBox{
@@ -17,32 +17,22 @@
      grid-column: 1/3;
      grid-row: 1;
    }
-   .pilotInput{
-     background-color: FFFFFF;
+   .Input{
+     background-color: #FFFFFF;
+   }
+   .outputGrid{
+     display: grid;
+	   grid-template-columns: minmax(auto,15rem) minmax(auto,15rem);
+     grid-gap: .5rem;
+   }
+   .outputHeading{
+     background-color: #FF00FF;
+   }
+   .outputBox{
+     background-color: #888888;
+   }
 
-   }
-   .passInput{
-     background-color: FFFFFF;
-   }
-   .baggageInput{
-     background-color: FFFFFF;
-   }
-   .mainFuelInput{
-     background-color: FFFFFF;
-   }
-   .wingFuelInput{
-     background-color: FFFFFF;
-   }
-   .oilInput{
-     background-color: FFFFFF;
-   }
-   .fuelUsedInput{
-     background-color: FFFFFF;
-	 display: grid;
-	 grid-template-columns: 1fr;
-   }
-   
-   @media only screen and (max-width: 700px) {
+   @media only screen and (max-width: 600px) {
 
      .WeightEntryForm{
        grid-template-columns: minmax(auto,20rem);
@@ -51,14 +41,3 @@
        grid-column: 1;
      }
    }
-
-
-
-
-
-
-
-
-
-
-
