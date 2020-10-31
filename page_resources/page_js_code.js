@@ -321,29 +321,49 @@ function makeCalculation() {
   }
 
 	//New output results to the screen, improved appearance and readabilty
-	/*
-	document.getElementById("output").innerHTML = '<div class="outputGrid">	<div class="outputHeading"> The Cub is on : ' + gear_type + '</div> <div class="outputBox">stuff here data</div></div>';
-  */
+	
+	document.getElementById("output").innerHTML = 
+	'<div class="outputGrid">' +
+		'<div class="outputHeading">The Cub is on : ' + gear_type + '</div>' +
+		'<div class="outputHeading">--------</div>' +
+		'<div class="outputHeading">Take off configuration:</div>' +
+		'<div class="outputBox">Main fuel tank contains</div>' + '<div class="outputBox">' + main_fuel_volume_usg + 'usg</div>' +
+		'<div class="outputBox">Wing fuel tank contains</div>' + '<div class="outputBox">' + wing_fuel_volume_usg + 'usg</div>' +
+		'<div class="outputBox">Approximate flight time with 30 min. reserve is</div>' + '<div class="outputBox">' + ( ((TO_fuel_flight_time_minutes) > 0)?(TO_fuel_flight_time_minutes).toFixed(0): '<span style="color:red">(' + (TO_fuel_flight_time_minutes).toFixed(0)+ ') </span>') + '&nbspminutes</div>' +
+		'<div class="outputBox">Weight (max =1220lbs)</div>' + '<div class="outputBox">' + (take_off_weight).toFixed(0) + '&nbsplbs&nbsp' + (is_over_Gross_TO_weight ? '<span style="color:red">is over max gross weight. WARNING</span>':'<span style="color:green">&nbspis OK</span>') + '</div>' +
+		'<div class="outputBox">Centre of Gravity (10.6 - 22.7)</div>' + '<div class="outputBox">' + CG_takeoff.toFixed(2) + (is_outside_TO_CG_envelope ? '<span style="color:red">&nbspOutside of CG envelope. WARNING</span>' : '<span style="color:green">&nbspis OK</span>') + '</div>' +
+		'<div class="outputBox">Remaining Load to gross weight is</div>' + '<div class="outputBox">' + ( ((MAX_GROSS_WEIGHT - take_off_weight)<0)? '<span style="color:red">(' + (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) + ') </span>': (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) ) + '&nbsplbs' + '</div>' +
+		
+		'<div class="outputHeading">--------</div>' +
+		'<div class="outputHeading">Estimated Landing configuration:</div>' +
+		'<div class="outputBox">Reserve fuel time, calculated at&nbsp' + FUEL_BURN_USGPH + '&nbspusgph&nbsp is about</div>' + '<div class="outputBox">' + landing_fuel_reserve_minutes.toFixed(1) + '&nbspminutes' + ( (is_below_minimum_fuel_reserve) ?  '<span style="color:red">WARNING, less than 30 minutes of fuel remaining at landing</span>' : '<span style="color:green">&nbspis OK</span>' ) + '</div>' +
+		'<div class="outputBox">Main fuel estimated is</div>' + '<div class="outputBox">' + landing_main_fuel_usg + "&nbspusg" + '</div>' +
+		'<div class="outputBox">Wing fuel estimated is</div>' + '<div class="outputBox">' + landing_wing_fuel_usg + '&nbspusg' + '</div>' +
+		'<div class="outputBox">Weight estimated (max =1220lbs)</div>' + '<div class="outputBox">' + (landing_weight).toFixed(0) + '&nbsplbs&nbsp' + (is_over_Gross_LDG_weight ? '<span style="color:red">is over max gross weight. WARNING</span>':'<span style="color:green">is OK') + '</div>' +
+		'<div class="outputBox">Centre of Gravity estimated (10.6 - 22.7)</div>' + '<div class="outputBox">' + CG_landing.toFixed(2) + (is_outside_LDG_CG_envelope ? '<span style="color:red">&nbspOutside of CG envelope. WARNING</span>':'<span style="color:green">&nbspis OK</span>') + '</div>' +
+	'</div>';
+  
+  /*
   //output the results to the screen
   if (true)//valid results on the entry form
   {
     document.getElementById("output").innerHTML =
-    "<p> The Cub is on : " + gear_type + "<br><br>"
-	+ "Take off configuration:<br>"
-	+ "&nbsp&nbsp&nbspMain fuel tank contains&nbsp" + main_fuel_volume_usg + "&nbspusg <br>"
-	+ "&nbsp&nbsp&nbspWing fuel tank contains&nbsp" + wing_fuel_volume_usg + "&nbspusg <br>"
-	+ '&nbsp&nbsp&nbspApproximate flight time with 30 min. reserve is ' + ( ((TO_fuel_flight_time_minutes) > 0)?(TO_fuel_flight_time_minutes).toFixed(0): '<span style="color:red">(' + (TO_fuel_flight_time_minutes).toFixed(0)+ ') </span>') + '&nbspminutes<br>'
-	+ "&nbsp&nbsp&nbspWeight (max =1220lbs) =&nbsp " + (take_off_weight).toFixed(0) + "&nbsplbs&nbsp" + (is_over_Gross_TO_weight ? '<font color="red"><span>is over max gross weight. WARNING</span></font><br>':'<font color="green"><span>&nbspis OK</span></font><br>')
-	+ "&nbsp&nbsp&nbspCentre of Gravity (min 10.6 max 22.7) =&nbsp" + CG_takeoff.toFixed(2) + (is_outside_TO_CG_envelope ? '<font color="red"><span>&nbspOutside of CG envelope. WARNING</span></font><br><br>' : '<font color="green"><span>&nbspis OK</span></font><br>')
-	//+ "&nbsp&nbsp&nbspRemaining Load to gross weight is " + (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) + "&nbsplbs<br><br>"
-	+ "&nbsp&nbsp&nbspRemaining Load to gross weight is " + ( ((MAX_GROSS_WEIGHT - take_off_weight)<0)? '<span style="color:red">(' + (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) + ') </span>': (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) ) + "&nbsplbs<br><br>"
+   Y "<p> The Cub is on : " + gear_type + "<br><br>"
+   Y + "Take off configuration:<br>"
+   Y + "&nbsp&nbsp&nbspMain fuel tank contains&nbsp" + main_fuel_volume_usg + "&nbspusg <br>"
+   Y + "&nbsp&nbsp&nbspWing fuel tank contains&nbsp" + wing_fuel_volume_usg + "&nbspusg <br>"
+   Y + '&nbsp&nbsp&nbspApproximate flight time with 30 min. reserve is ' + ( ((TO_fuel_flight_time_minutes) > 0)?(TO_fuel_flight_time_minutes).toFixed(0): '<span style="color:red">(' + (TO_fuel_flight_time_minutes).toFixed(0)+ ') </span>') + '&nbspminutes<br>'
+   Y + "&nbsp&nbsp&nbspWeight (max =1220lbs) =&nbsp " + (take_off_weight).toFixed(0) + "&nbsplbs&nbsp" + (is_over_Gross_TO_weight ? '<font color="red"><span>is over max gross weight. WARNING</span></font><br>':'<font color="green"><span>&nbspis OK</span></font><br>')
+   Y + "&nbsp&nbsp&nbspCentre of Gravity (min 10.6 max 22.7) =&nbsp" + CG_takeoff.toFixed(2) + (is_outside_TO_CG_envelope ? '<font color="red"><span>&nbspOutside of CG envelope. WARNING</span></font><br><br>' : '<font color="green"><span>&nbspis OK</span></font><br>')
+   Y //+ "&nbsp&nbsp&nbspRemaining Load to gross weight is " + (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) + "&nbsplbs<br><br>"
+   Y + "&nbsp&nbsp&nbspRemaining Load to gross weight is " + ( ((MAX_GROSS_WEIGHT - take_off_weight)<0)? '<span style="color:red">(' + (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) + ') </span>': (MAX_GROSS_WEIGHT - take_off_weight).toFixed(0) ) + "&nbsplbs<br><br>"
 
-	+ "Estimated landing configuration:<br>"
-	+ "&nbsp&nbsp&nbspReserve fuel time is about &nbsp" + landing_fuel_reserve_minutes.toFixed(1) + "&nbspminutes calculated at&nbsp" + FUEL_BURN_USGPH + "&nbspusgph&nbsp" + ( (is_below_minimum_fuel_reserve) ?  '<font color="red"><span>WARNING, less than 30 minutes of fuel remaining at landing</span></font><br>' : '<font color="green"><span>&nbspis OK</span></font><br>' )
-	+ "&nbsp&nbsp&nbspMain fuel estimated is&nbsp" + landing_main_fuel_usg + "&nbspusg<br>"
-	+ "&nbsp&nbsp&nbspWing fuel estimated is&nbsp" + landing_wing_fuel_usg + "&nbspusg<br>"
-	+ "&nbsp&nbsp&nbspWeight estimated (max =1220lbs) =&nbsp" + (landing_weight).toFixed(0) + "&nbsplbs&nbsp" + (is_over_Gross_LDG_weight ? '<font color="red"><span>is over max gross weight. WARNING</span></font><br>':'<font color="green"><span>is OK<br></font>')
-	+ "&nbsp&nbsp&nbspCentre of Gravity estimated (min 10.6 max 22.7) = &nbsp" + CG_landing.toFixed(2) + (is_outside_LDG_CG_envelope ? '<font color="red"><span>&nbspOutside of CG envelope. WARNING</span></font><br>':'<font color="green"><span>&nbspis OK</span></font><br>')
+   Y + "Estimated landing configuration:<br>"
+   Y + "&nbsp&nbsp&nbspReserve fuel time is about &nbsp" + landing_fuel_reserve_minutes.toFixed(1) + "&nbspminutes calculated at&nbsp" + FUEL_BURN_USGPH + "&nbspusgph&nbsp" + ( (is_below_minimum_fuel_reserve) ?  '<font color="red"><span>WARNING, less than 30 minutes of fuel remaining at landing</span></font><br>' : '<font color="green"><span>&nbspis OK</span></font><br>' )
+   Y + "&nbsp&nbsp&nbspMain fuel estimated is&nbsp" + landing_main_fuel_usg + "&nbspusg<br>"
+   Y + "&nbsp&nbsp&nbspWing fuel estimated is&nbsp" + landing_wing_fuel_usg + "&nbspusg<br>"
+   Y + "&nbsp&nbsp&nbspWeight estimated (max =1220lbs) =&nbsp" + (landing_weight).toFixed(0) + "&nbsplbs&nbsp" + (is_over_Gross_LDG_weight ? '<font color="red"><span>is over max gross weight. WARNING</span></font><br>':'<font color="green"><span>is OK<br></font>')
+   Y + "&nbsp&nbsp&nbspCentre of Gravity estimated (min 10.6 max 22.7) = &nbsp" + CG_landing.toFixed(2) + (is_outside_LDG_CG_envelope ? '<font color="red"><span>&nbspOutside of CG envelope. WARNING</span></font><br>':'<font color="green"><span>&nbspis OK</span></font><br>')
 
     + "</p>";
   }
@@ -351,7 +371,7 @@ function makeCalculation() {
   {
     document.getElementById("output").innerHTML = "INVALID form data, Please complete the form or correct any mistakes entered";
   }
-
+*/
   //send the data to the chart function to display in chart form
   chart_it(take_off_weight, CG_takeoff, landing_weight, CG_landing,(is_outside_TO_CG_envelope || is_outside_LDG_CG_envelope || is_over_Gross_LDG_weight || is_over_Gross_TO_weight), is_below_minimum_fuel_reserve, (gear_type === "WHEELS") );
 
